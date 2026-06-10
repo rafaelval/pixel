@@ -9,10 +9,12 @@ async function fetchRandomPokemonId() {
   return Math.floor(Math.random() * total) + 1;
 }
 
-async function fetchPokemonName(id) {
+async function fetchPokemonData(id) {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
   const data = await res.json();
-  return data.name.charAt(0).toUpperCase() + data.name.slice(1);
+  const name = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+  const image = data.sprites.other["official-artwork"].front_default || data.sprites.front_default;
+  return { name, image };
 }
 
 function hexFromRgba(r, g, b, a) {
@@ -173,16 +175,16 @@ export const usePixelStore = create((set, get) => ({
   loadRandomPokemon: async () => {
     set({ loading: true, completed: false, activeColorId: null, currentPokemon: null });
     const id = await fetchRandomPokemonId();
-    const name = await fetchPokemonName(id);
+    const { name, image } = await fetchPokemonData(id);
     const { cells, colors } = await processSprite(id);
-    set({ cells, colors, loading: false, currentPokemon: { id, name } });
+    set({ cells, colors, loading: false, currentPokemon: { id, name, image } });
   },
 
   loadPokemon: async (pokemonId) => {
     set({ loading: true, completed: false, activeColorId: null });
-    const name = await fetchPokemonName(pokemonId);
+    const { name, image } = await fetchPokemonData(pokemonId);
     const { cells, colors } = await processSprite(pokemonId);
-    set({ cells, colors, loading: false, currentPokemon: { id: pokemonId, name } });
+    set({ cells, colors, loading: false, currentPokemon: { id: pokemonId, name, image } });
   },
 
   setActiveColor: (id) => {

@@ -1,0 +1,124 @@
+.searchContainer {
+    position: relative;
+    width: 100%;
+    max-width: 200px;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    padding: 8px 12px 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.input:focus {
+    border-color: #1a6fcf;
+    box-shadow: 0 0 0 2px rgba(26, 111, 207, 0.1);
+}
+
+.input::placeholder {
+    color: #999;
+}
+
+.loader {
+    position: absolute;
+    right: 10px;
+    font-size: 16px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.suggestionsList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    list-style: none;
+    margin: 4px 0 0 0;
+    padding: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.suggestionItem {
+    padding: 10px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.15s;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestionItem:last-child {
+    border-bottom: none;
+}
+
+.suggestionItem:hover {
+    background-color: #f5f5f5;
+}
+
+.pokemonName {
+    font-size: 13px;
+    color: #333;
+    text-transform: capitalize;
+}
+
+.noResults {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 12px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+    z-index: 10;
+}
+
+@media (max-width: 480px) {
+    .searchContainer {
+        max-width: 100%;
+    }
+
+    .input {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .suggestionsList {
+        max-height: 200px;
+    }
+
+    .suggestionItem {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+}

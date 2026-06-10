@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { usePixelStore, GRID_SIZE } from "./store/pixelStore";
 import { PixelGrid } from "./components/PixelGrid";
 import { ColorPalette } from "./components/ColorPalette";
+import { SearchPokemon } from "./components/SearchPokemon";
+import { PokemonPreview } from "./components/PokemonPreview";
 import { ProgressBar } from "./components/ProgressBar";
 import styles from "./App.module.css";
 
@@ -60,6 +62,15 @@ export const App = () => {
       }}
     >
       <h1 className={styles.title}>Pokémon Pixel Art</h1>
+
+      <div className={styles.topBar}>
+        <div className={styles.leftSection}>
+          <SearchPokemon />
+        </div>
+        <div className={styles.rightSection}>
+          <PokemonPreview />
+        </div>
+      </div>
 
       <div className={styles.mainContainer}>
         <div className={styles.sidebar}>
