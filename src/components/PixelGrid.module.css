@@ -7,7 +7,6 @@
     flex-shrink: 0;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
-    touch-action: none;
     user-select: none;
     -webkit-user-select: none;
 }
@@ -33,7 +32,6 @@
     justify-content: center;
     cursor: pointer;
     overflow: hidden;
-    touch-action: none;
 }
 
 .cell:hover {
