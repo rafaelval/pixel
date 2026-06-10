@@ -7,7 +7,6 @@ export const PixelGrid = () => {
   const [isMouseDown, setIsMouseDown] = useState(false);
   const gridRef = useRef(null);
 
-  // Manage document overflow when mouse is down
   useEffect(() => {
     if (isMouseDown) {
       document.body.style.overflow = "hidden";
@@ -20,7 +19,6 @@ export const PixelGrid = () => {
     };
   }, [isMouseDown]);
 
-  // Listener global para asegurar que mouseUp se detecte en cualquier lugar
   useEffect(() => {
     const handleGlobalMouseUp = () => {
       setIsMouseDown(false);
