@@ -7,11 +7,23 @@ export const PixelGrid = () => {
   const [isMouseDown, setIsMouseDown] = useState(false);
   const gridRef = useRef(null);
 
+  // Manage document overflow when mouse is down
+  useEffect(() => {
+    if (isMouseDown) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMouseDown]);
+
   // Listener global para asegurar que mouseUp se detecte en cualquier lugar
   useEffect(() => {
     const handleGlobalMouseUp = () => {
       setIsMouseDown(false);
-      document.body.style.overflow = "";
     };
 
     document.addEventListener("mouseup", handleGlobalMouseUp);
@@ -28,7 +40,6 @@ export const PixelGrid = () => {
   const handleMouseDown = (cellId) => {
     setIsMouseDown(true);
     fillCell(cellId);
-    document.body.style.overflow = "hidden";
   };
 
   const handleMouseEnter = (cellId) => {
@@ -41,7 +52,6 @@ export const PixelGrid = () => {
     e.preventDefault();
     setIsMouseDown(true);
     fillCell(cellId);
-    document.body.style.overflow = "hidden";
   };
 
   const handleTouchMove = (e) => {
