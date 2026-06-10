@@ -1,0 +1,46 @@
+.wrap {
+    width: 100%;
+    max-width: 560px;
+    height: 8px;
+    background-color: #ddd;
+    border-radius: 99px;
+    overflow: hidden;
+    position: relative;
+}
+
+.bar {
+    height: 100%;
+    background-color: #1a6fcf;
+    border-radius: 99px;
+    transition: width 0.3s ease;
+}
+
+.label {
+    position: absolute;
+    right: 0;
+    top: -18px;
+    font-size: 11px;
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    .wrap {
+        height: 6px;
+    }
+
+    .label {
+        font-size: 10px;
+        top: -16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .wrap {
+        height: 3px;
+    }
+
+    .label {
+        font-size: 8px;
+        top: -12px;
+    }
+}
